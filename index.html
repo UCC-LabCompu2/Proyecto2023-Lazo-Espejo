@@ -1,41 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!DOCTYPE html>
+    </body>
     <meta charset="UTF-8">
     <title>Importados Mackenzie</title>
     <meta content="Espejo Matías - Lazo Araceli" name="Autor">
     <meta content="Pagina web de importador de zapatillas" name="Descripción">
     <meta content="Zapatillas, Conversiones, Dolar, Peso, Talles" name="Palabras-principales">
     <link rel="stylesheet" href="estilos.css" type="text/css">
+    <style>
+        #menu {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button {
+            width: 200px;
+            height: 80px;
+            background-color: lightgray;
+            border: none;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
 <div id="container">
-    
+    <!-- Encabezado -->
     <header>
-        <h1>Importados Mackenzie</h1>
-        <img src="Imagenes/Logo_Principal.png" alt="Logo de Importados Mackenzie">
+        <h1 class="logo"> Importados Mackenzie</h1>
+        <img class="logofoto" src="Imagenes/Logo_Principal.png" alt="Logo de Importados Mackenzie" title="Importados Mackenzie">
     </header>
 
-
+    <!-- Menú -->
     <div id="menu">
-        <ul>
-            <li><a href="zapatillas-hombre.html">Zapatillas de Hombre</a></li>
-            <li><a href="zapatillas-mujer.html">Zapatillas de Mujer</a></li>
-        </ul>
+        <a href="zapatillas-hombre.html">
+            <button>
+                <img src="Imagenes/Masculino.png" alt="Zapatillas masculinas" title="Masculino" width="300" height="250">
+            </button>
+        </a>
+        <a href="zapatillas-mujer.html">
+            <button>
+                <img src="Imagenes/Femenino.png" alt="Zapatillas femeninas" title="Fememnino" width="300" height="250">
+            </button>
+        </a>
     </div>
 
-
+    <!-- Contenido principal -->
     <div id="content">
         <h2>Bienvenido a Importados Mackenzie</h2>
         <p>Descubre nuestra amplia selección de zapatillas importadas de alta calidad. Tenemos los modelos más exclusivos y los últimos lanzamientos de las marcas más reconocidas.</p>
         <p>Explora nuestras categorías y encuentra el par perfecto para ti. ¡No te pierdas nuestras ofertas especiales!</p>
     </div>
 
-
+    <!-- Pie de página -->
     <div id="footer">
         <p>© 2023 Importados Mackenzie. Todos los derechos reservados.</p>
     </div>
 </div>
 </body>
 </html>
-
