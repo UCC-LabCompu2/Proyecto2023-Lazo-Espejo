@@ -39,15 +39,48 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 120px;
 }
+
+button {
+    width: 200px;
+    height: 80px;
+    background-color: lightgray;
+    border: none;
+    padding: 0;
+}
+
+#menu {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+#menu a {
+    display: flex;
+    justify-content: center;
+}
+
+#menu button {
+    width: 300px;
+    height: 250px;
+}
+
 
 .boton-imagen {
     display: inline-block;
     margin: 10px;
+    width: calc(33.33% - 20px);
+    text-align: center;
 }
 
 .boton-imagen img {
-    max-width: 200px;
+    max-width: 100%;
     height: auto;
+    max-height: 165px;
+}
+.boton-imagen p {
+    font-size: 50px;
+    font-weight: bold;
 }
