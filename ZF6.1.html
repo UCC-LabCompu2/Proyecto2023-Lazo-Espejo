@@ -1,10 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Zapatilla Femenina</title>
+    <link rel="stylesheet" href="estilos.css" type="text/css">
 </head>
 <body>
+<h1 class="titulo-producto">Zapatilla Femenina Nike Basbony </h1>
+<div class="imagen-precio">
+    <img class="imagen-producto" src="Imagenes/ZF6.jpg" alt="Zapatilla Femenina Nike Basbony " title="Nike Basbony">
+    <span id="precio"></span>
+</div>
+
+
+
+<p class="texto-medida">Seleccione el tipo de medida:</p>
+<div class="botones-talla">
+    <input type="radio" id="us" name="talla" value="us" onclick="actualizarTallas()">
+    <label for="us">US</label>
+    <input type="radio" id="cm" name="talla" value="cm" onclick="actualizarTallas()">
+    <label for="cm">cm</label>
+
+</div>
+<p class="texto-talle">Seleccione el talle que desea:</p>
+<select id="tallas" class="boton-seleccion"></select>
+<p class="texto-moneda">Selecciona el tipo de moneda:</p>
+<div class="botones-moneda">
+    <input type="radio" id="dolar" name="moneda" value="dolar" onclick="actualizarPrecio()">
+    <label for="dolar">$</label>
+    <input type="radio" id="usd" name="moneda" value="usd" onclick="actualizarPrecio()">
+    <label for="usd">USD</label>
+</div>
+
+
+
+<!-- Resto del contenido de la página -->
+<script>
+    function actualizarTallas() {
+        var tallasSelect = document.getElementById("tallas");
+        var usRadio = document.getElementById("us");
+        var cmRadio = document.getElementById("cm");
+
+        // Elimina las opciones actuales del botón de selección
+        tallasSelect.innerHTML = "";
+
+        if (usRadio.checked) {
+            // Si se ha seleccionado "US", agrega las opciones en pulgadas
+            var tallasUS = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11];
+            for (var i = 0; i < tallasUS.length; i++) {
+                var opcion = document.createElement("option");
+                opcion.text = tallasUS[i];
+                opcion.value = tallasUS[i];
+                tallasSelect.add(opcion);
+            }
+        } else if (cmRadio.checked) {
+            // Si se ha seleccionado "cm", agrega las opciones en centímetros
+            var tallasCM = [35,36,37, 38, 39, 40, 41, 42, 43, 44,45];
+            for (var i = 0; i < tallasCM.length; i++) {
+                var opcion = document.createElement("option");
+                opcion.text = tallasCM[i];
+                opcion.value = tallasCM[i];
+                tallasSelect.add(opcion);
+            }
+        }
+    }
+    function actualizarPrecio() {
+        var precioSpan = document.getElementById("precio");
+        var dolarRadio = document.getElementById("dolar");
+        var usdRadio = document.getElementById("usd");
+
+        if (dolarRadio.checked) {
+            precioSpan.textContent = "$45.000";
+        } else if (usdRadio.checked) {
+            precioSpan.textContent = "USD 90";
+        }
+    }
+
+    function formatoNumeroTarjeta(input) {
+        var valor = input.value.replace(/\s+/g, '');
+        if (valor.length > 0) {
+            valor = valor.match(new RegExp('.{1,4}', 'g')).join(' ');
+        }
+        input.value = valor;
+    }
+
+    function actualizarPrecioResumen() {
+        var precioSpan = document.getElementById("precio-resumen");
+        var dolarRadio = document.getElementById("dolar");
+        var usdRadio = document.getElementById("usd");
+
+        if (dolarRadio.checked) {
+            precioSpan.textContent = "$45.000";
+        } else if (usdRadio.checked) {
+            precioSpan.textContent = "USD 90";
+        }
+    }
+
+    // Llama a las funciones actualizarPrecio y actualizarPrecioResumen cuando se carga la página
+    window.onload = function() {
+        actualizarPrecio();
+        actualizarPrecioResumen();
+    };
+
+    document.getElementById("dolar").addEventListener("click", actualizarPrecioResumen);
+    document.getElementById("usd").addEventListener("click", actualizarPrecioResumen);
+
+    document.getElementById("iniciar-sesion").addEventListener("click", function() {
+        console.log("Botón de iniciar sesión presionado");
+
+        var usuario = document.getElementById("usuario").value;
+        var contrasena = document.getElementById("contrasena").value;
+        var mensajeError = document.getElementById("mensaje-error");
+        var precioResumen = document.getElementById("precio-resumen");
+
+        if (usuario === "labdecompu2@gmail.com" && contrasena === "ucc1234") {
+            // Aplica el descuento del 20% en el precio del producto
+            var precio = parseFloat(precioResumen.textContent.replace(/[^0-9.]/g, ""));
+            var descuento = precio * 0.2;
+            var nuevoPrecio = precio - descuento;
+            precioResumen.textContent = precioResumen.textContent[0] + nuevoPrecio.toFixed(2);
+
+            // Oculta el mensaje de error
+            mensajeError.textContent = "";
+        } else {
+            // Muestra el mensaje de error
+            mensajeError.textContent = "Usuario no encontrado";
+        }
+    });
+    document.getElementById("finalizar-compra").addEventListener("click", function() {
+        window.location.href = "final.html";
+    });
+
+</script>
+<h2 class="titulo-pago">Datos del pago</h2>
+<p class="texto-tarjeta">Tipo de tarjeta:</p>
+<select id="tarjetas" class="boton-tarjeta">
+    <option value="visa">VISA</option>
+    <option value="mastercard">MASTERCARD</option>
+    <option value="american-express">AMERICAN EXPRESS</option>
+    <option value="naranja-x">NARANJA X</option>
+</select>
+<p class="texto-numero">Número de tarjeta:</p>
+<input type="text" id="numero-tarjeta" class="input-numero" maxlength="19" oninput="formatoNumeroTarjeta(this)">
+<span class="texto-cvv">CVV:</span>
+<input type="text" id="cvv" class="input-cvv" maxlength="3">
+<p class="texto-direccion">Dirección del envío:</p>
+<input type="text" id="direccion" class="input-direccion">
+<p class="texto-codigo-postal">Código postal:</p>
+<input type="text" id="codigo-postal" class="input-codigo-postal" maxlength="8">
+<p class="texto-provincia">Provincia:</p>
+<input type="text" id="provincia" class="input-provincia">
+<div class="resumen-pedido">
+    <h2>Resumen del pedido</h2>
+    <h3>Zapatilla Masculina Nike Fronty</h3>
+    <h2 id="precio-resumen"></h2>
+    <p>¿Ya es cliente de Importados McKenzie? <br>¡Inicia sesión y recibe un 20% de descuento!</p>
+    <label for="usuario">Usuario</label>
+    <input type="text" id="usuario"> <br> <br>
+    <label for="contrasena">Contraseña</label>
+    <input type="password" id="contrasena"> <br> <br>
+    <button id="iniciar-sesion">Iniciar sesión</button>
+    <p id="mensaje-error"></p>
+</div>
+
+</div>
+<div id="finalizar-compra-container" style="text-align: center;">
+    <button id="finalizar-compra">Finalizar compra</button>
+</div>
+
 
 </body>
 </html>
